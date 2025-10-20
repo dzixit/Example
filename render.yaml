@@ -1,12 +1,7 @@
 services:
   - type: web
-    name: example-app
-    env: node
-    buildCommand: |
-      sudo apt-get update
-      sudo apt-get install -y openjdk-17-jdk
-      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-      export PATH=$JAVA_HOME/bin:$PATH
-      chmod +x ./gradlew
-      ./gradlew build
-    startCommand: npm start
+    name: demo1
+    env: java
+    plan: free
+    buildCommand: ./gradlew build -x test
+    startCommand: java -Dserver.port=$PORT -jar build/libs/*.jar
