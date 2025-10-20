@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: spring-boot-app
+    env: java
+    plan: free
+    buildCommand: ./gradlew build
+    startCommand: java -Dserver.port=$PORT -jar build/libs/*.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
