@@ -1,10 +1,12 @@
 services:
   - type: web
-    name: spring-boot-app
-    env: java
-    plan: free
-    buildCommand: ./gradlew build
-    startCommand: java -Dserver.port=$PORT -jar build/libs/*.jar
-    envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: production
+    name: example-app
+    env: node
+    buildCommand: |
+      sudo apt-get update
+      sudo apt-get install -y openjdk-17-jdk
+      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      export PATH=$JAVA_HOME/bin:$PATH
+      chmod +x ./gradlew
+      ./gradlew build
+    startCommand: npm start
